@@ -20,7 +20,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
     <html lang="pt-BR" suppressHydrationWarning>
       <body
         className={cn(
-          'min-h-screen bg-zinc-950 text-zinc-100 selection:bg-emerald-500 selection:text-zinc-50',
+          'min-h-screen bg-zinc-950 font-sans text-zinc-100 selection:bg-emerald-500 selection:text-zinc-50',
           inter.variable,
           geistSans.variable
         )}
