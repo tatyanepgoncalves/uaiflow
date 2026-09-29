@@ -1,7 +1,7 @@
 import { ArrowRight, LockIcon, Mail, User } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Button } from '@/components/ui/button'
 
 export default function FormRegister() {
   return (
@@ -45,9 +45,8 @@ export default function FormRegister() {
         </div>
       </div>
 
-
       <Button variant="auth">
-        Criar conta e iniciar  <ArrowRight className='w-4 h-4' />
+        Criar conta e iniciar <ArrowRight className="h-4 w-4" />
       </Button>
     </form>
   )

@@ -34,7 +34,7 @@ export default function FormLogin() {
 
       <Button type="submit" variant="auth">
         Entrar na plataforma
-        <ArrowRight className='w-4 h-4' />
+        <ArrowRight className="h-4 w-4" />
       </Button>
     </form>
   )

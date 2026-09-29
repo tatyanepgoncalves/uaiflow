@@ -28,7 +28,7 @@ export default function AuthDialog() {
       <DialogTrigger
         render={
           <Button
-            className="flex items-center space-x-1.5 px-3.5 py-1.5 font-bold text-xs shadow-emerald-500/20 shadow-md transition sm:text-sm"
+            className="flex h-10 items-center space-x-1.5 px-3.5 py-1.5 font-bold text-xs shadow-emerald-500/20 shadow-md transition sm:text-sm"
             variant="default"
           />
         }

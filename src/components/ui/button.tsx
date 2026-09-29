@@ -21,18 +21,20 @@ const buttonVariants = cva(
           "size-6 in-data-[slot=button-group]:rounded-lg rounded-[min(var(--radius-md),10px)] [&_svg:not([class*='size-'])]:size-3",
         lg: 'h-9 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2',
         sm: "h-7 gap-1 in-data-[slot=button-group]:rounded-lg rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
+        xl: 'h-12',
         xs: "h-6 gap-1 in-data-[slot=button-group]:rounded-lg rounded-[min(var(--radius-md),10px)] px-2 text-xs has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
       },
       variant: {
-        auth: 'flex h-12 w-full items-center justify-center space-x-2 rounded-xl bg-linear-to-r from-emerald-500 to-teal-600 py-3 font-bold text-sm text-white shadow-emerald-500/20 shadow-lg transition hover:from-emerald-400 hover:to-teal-500 disabled:opacity-50',
+        auth: 'flex items-center justify-center space-x-2 rounded-xl bg-linear-to-r from-emerald-500 to-teal-600 py-3 font-bold text-sm text-white shadow-emerald-500/20 shadow-lg transition hover:from-emerald-400 hover:to-teal-500 disabled:opacity-50',
         default: 'bg-emerald-500 text-zinc-950 hover:bg-emerald-400',
         destructive:
           'bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:focus-visible:ring-destructive/40 dark:hover:bg-destructive/30',
         ghost:
           'hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50',
+        hero: 'flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 px-8 py-4 font-black text-slate-950 text-sm shadow-emerald-500/25 shadow-xl transition hover:from-emerald-400 hover:to-teal-500 sm:w-auto sm:text-base',
         link: 'text-primary underline-offset-4 hover:underline',
         outline:
-          'border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50',
+          'rounded-xl border-zinc-700/80 bg-zinc-900 px-7 py-4 font-bold text-sm text-zinc-200 hover:bg-zinc-800 hover:text-zinc-300 aria-expanded:bg-zinc-900 aria-expanded:text-zinc-200 sm:text-base',
         secondary:
           'bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground',
       },
