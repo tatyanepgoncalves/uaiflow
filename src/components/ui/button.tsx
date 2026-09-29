@@ -24,6 +24,7 @@ const buttonVariants = cva(
         xs: "h-6 gap-1 in-data-[slot=button-group]:rounded-lg rounded-[min(var(--radius-md),10px)] px-2 text-xs has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
       },
       variant: {
+        auth: 'flex h-12 w-full items-center justify-center space-x-2 rounded-xl bg-linear-to-r from-emerald-500 to-teal-600 py-3 font-bold text-sm text-white shadow-emerald-500/20 shadow-lg transition hover:from-emerald-400 hover:to-teal-500 disabled:opacity-50',
         default: 'bg-emerald-500 text-zinc-950 hover:bg-emerald-400',
         destructive:
           'bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:focus-visible:ring-destructive/40 dark:hover:bg-destructive/30',
