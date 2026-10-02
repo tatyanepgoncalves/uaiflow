@@ -1,5 +1,6 @@
 import ArenaSimulator from '@/components/public/home/arena-simulator/area-simulator'
 import HeroHome from '@/components/public/home/hero/hero-home'
+import LanguagesSection from '@/components/public/home/languages/language-section'
 import PillarsSection from '@/components/public/home/pillars/pillars-section'
 
 export default function Home() {
@@ -13,6 +14,9 @@ export default function Home() {
 
       {/* INTERACTIVE ENGINE SANDBOX DEMO */}
       <ArenaSimulator />
+
+      {/* LANGUAGES SECTION */}
+      <LanguagesSection />
     </div>
   )
 }
