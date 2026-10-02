@@ -2,6 +2,7 @@ import ArenaSimulator from '@/components/public/home/arena-simulator/area-simula
 import HeroHome from '@/components/public/home/hero/hero-home'
 import LanguagesSection from '@/components/public/home/languages/language-section'
 import PillarsSection from '@/components/public/home/pillars/pillars-section'
+import RoutineSection from '@/components/public/home/routine/routine-section'
 
 export default function Home() {
   return (
@@ -17,6 +18,9 @@ export default function Home() {
 
       {/* LANGUAGES SECTION */}
       <LanguagesSection />
+
+      {/* ROUTINE SECTION */}
+      <RoutineSection />
     </div>
   )
 }
