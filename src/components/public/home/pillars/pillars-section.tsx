@@ -3,7 +3,7 @@ import { pillars } from '@/types/pillars'
 
 export default function PillarsSection() {
   return (
-    <section className="flex w-full max-w-6xl flex-col items-center justify-center space-y-12 px-4 sm:px-6 lg:px-8">
+    <section className="flex w-full max-w-7xl flex-col items-center justify-center space-y-12 px-4 sm:px-6 lg:px-8">
       <div className="flex max-w-3xl flex-col items-center justify-center space-y-3 text-center">
         <span className="font-bold text-indigo-400 text-xs uppercase tracking-wider">
           Fundamentos de Neuroaprendizagem

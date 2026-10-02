@@ -2,9 +2,9 @@
   "name": "uaiflow",
   "version": "0.1.0",
   "scripts": {
-    "build": "next build",
+    "build": "next build --webpack",
     "check": "ultracite check",
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "fix": "ultracite fix",
     "format": "biome format --write",
     "lint": "biome check",
