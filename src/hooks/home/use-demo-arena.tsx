@@ -25,8 +25,8 @@ export default function useDemoArena() {
 
   const currentData = LANGUAGE_DATA[lang]
 
-  const onChangeInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setSentence(e.target.value)
+  const onChangeInput = (value: string) => {
+    setSentence(value)
     setShowResult(false)
   }
 
