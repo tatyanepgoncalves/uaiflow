@@ -7,6 +7,8 @@ import PillarsSection from '@/components/public/home/pillars/pillars-section'
 import RoutineSection from '@/components/public/home/routine/routine-section'
 import TestimonialsSection from '@/components/public/home/testimonials/testimonials-section'
 
+export const dynamic = 'force-dynamic'
+
 export default function Home() {
   return (
     <div className="flex w-full flex-col items-center justify-center space-y-24 pb-20 sm:space-y-32">

@@ -1,6 +1,7 @@
 import { Brain } from 'lucide-react'
 import Link from 'next/link'
 import AuthDialog from './auth-dialog'
+import { Suspense } from 'react'
 
 export default function HeaderPublic() {
   return (
@@ -26,7 +27,10 @@ export default function HeaderPublic() {
           </div>
         </Link>
 
+        <Suspense fallback={<div>Carregando...</div>}>
+
         <AuthDialog />
+        </Suspense>
       </div>
     </header>
   )
