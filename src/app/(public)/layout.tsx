@@ -1,3 +1,4 @@
+import FooterPublic from '@/components/layout/public/footer-public'
 import HeaderPublic from '@/components/layout/public/header-public'
 
 interface PublicLayoutProps {
@@ -9,6 +10,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
     <section>
       <HeaderPublic />
       <main>{children}</main>
+      <FooterPublic />
     </section>
   )
 }
