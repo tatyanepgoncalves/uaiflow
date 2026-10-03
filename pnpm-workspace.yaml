@@ -4,3 +4,6 @@ allowBuilds:
   esbuild: true
 minimumReleaseAgeExclude:
   - ultracite@7.12.1
+packages:
+  - 'apps/*'
+  - 'packages/*'
