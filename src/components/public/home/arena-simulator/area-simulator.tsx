@@ -19,7 +19,10 @@ export default function ArenaSimulator() {
   } = useDemoArena()
 
   return (
-    <div className="w-full max-w-4xl rounded-2xl border border-slate-800/80 bg-[#0B0F17] p-6 shadow-2xl md:p-8">
+    <div
+      className="w-full max-w-7xl rounded-2xl border border-zinc-800/80 bg-zinc-950 p-6 shadow-2xl md:p-8"
+      id="simulator"
+    >
       <ArenaHeader currentLang={lang} onLanguageChange={handleLanguageChange} />
 
       <ChunkCard

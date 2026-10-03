@@ -45,7 +45,7 @@ export default function FormRegister() {
         </div>
       </div>
 
-      <Button variant="auth">
+      <Button className="w-full" variant="auth">
         Criar conta e iniciar <ArrowRight className="h-4 w-4" />
       </Button>
     </form>

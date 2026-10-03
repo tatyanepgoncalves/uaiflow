@@ -1,7 +1,6 @@
 'use client'
 
 import { Brain, User, X } from 'lucide-react'
-import { useCallback, useState } from 'react'
 import FormLogin from '@/components/public/auth/form-login'
 import FormRegister from '@/components/public/auth/form-register'
 import { Button } from '@/components/ui/button'
@@ -15,16 +14,13 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import useAuth from '@/hooks/public/use-auth'
 
 export default function AuthDialog() {
-  const [mode, setMode] = useState<'entrar' | 'cadastrar'>('entrar')
-
-  const handleClick = useCallback((value: 'entrar' | 'cadastrar') => {
-    setMode(value)
-  }, [])
+  const { isOpen, mode, handleOpenChange, handleTabChange } = useAuth()
 
   return (
-    <Dialog>
+    <Dialog onOpenChange={handleOpenChange} open={isOpen}>
       <DialogTrigger
         render={
           <Button
@@ -63,12 +59,7 @@ export default function AuthDialog() {
           </div>
         </DialogHeader>
 
-        <Tabs
-          className="w-full"
-          defaultValue="entrar"
-          onValueChange={handleClick}
-          value={mode}
-        >
+        <Tabs className="w-full" onValueChange={handleTabChange} value={mode}>
           <TabsList>
             <TabsTrigger className="font-bold tracking-wider" value="entrar">
               Entrar

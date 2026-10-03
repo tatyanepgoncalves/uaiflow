@@ -32,7 +32,7 @@ export default function FormLogin() {
         </div>
       </div>
 
-      <Button type="submit" variant="auth">
+      <Button className="w-full" type="submit" variant="auth">
         Entrar na plataforma
         <ArrowRight className="h-4 w-4" />
       </Button>

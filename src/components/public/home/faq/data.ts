@@ -1,4 +1,4 @@
-import type {  FAQItemData } from './types'
+import type { FAQItemData } from './types'
 
 export const FAQ_DATA: FAQItemData[] = [
   {

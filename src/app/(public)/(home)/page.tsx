@@ -1,4 +1,5 @@
 import ArenaSimulator from '@/components/public/home/arena-simulator/area-simulator'
+import CtaFinal from '@/components/public/home/cta/cta-final'
 import FaqSection from '@/components/public/home/faq/faq-section'
 import HeroHome from '@/components/public/home/hero/hero-home'
 import LanguagesSection from '@/components/public/home/languages/language-section'
@@ -27,7 +28,11 @@ export default function Home() {
       {/* TESTIMONIALS SECTION */}
       <TestimonialsSection />
 
+      {/* FAQ SECTION */}
       <FaqSection />
+
+      {/* CTA FINAL */}
+      <CtaFinal />
     </div>
   )
 }
