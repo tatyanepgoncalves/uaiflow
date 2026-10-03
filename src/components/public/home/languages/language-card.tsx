@@ -21,14 +21,14 @@ export function LanguageCard({ language }: LanguageCardProps) {
       <div>
         {/* Topo: Código e Nível CEFR */}
         <div className="flex items-start justify-between">
-          <span className="font-normal text-3xl text-zinc-200">
+          <span className="font-normal text-xl text-zinc-200">
             {language.code}
           </span>
           <Badge
-            className="border-slate-800 bg-[#070A0F] font-semibold text-[10px] text-zinc-400 tracking-wide"
+            className="rounded border-zinc-700 bg-zinc-800 font-semibold text-[11px] text-zinc-400 tracking-wider"
             variant="outline"
           >
-            {language.cefr}
+            CEFR A1 — C2
           </Badge>
         </div>
 
@@ -49,7 +49,7 @@ export function LanguageCard({ language }: LanguageCardProps) {
         <div className="my-5 border-slate-800/60 border-t" />
 
         {/* Tópicos de Foco */}
-        <div>
+        <div className="space-y-1.5 border-zinc-800/80 border-t pt-2">
           <span className="font-bold text-[10px] text-zinc-500 uppercase tracking-wider">
             {language.focusTitle}
           </span>
@@ -59,8 +59,8 @@ export function LanguageCard({ language }: LanguageCardProps) {
                 className="flex items-start text-xs text-zinc-400"
                 key={topic}
               >
-                <span className="mr-2 text-[#00d492]">•</span>
-                <span>{topic}</span>
+                <span className="mr-2 text-emerald-400">•</span>
+                <span className="truncate">{topic}</span>
               </li>
             ))}
           </ul>
@@ -68,7 +68,7 @@ export function LanguageCard({ language }: LanguageCardProps) {
       </div>
 
       {/* Botão de Ação no Rodapé */}
-      <div className="mt-8">
+      <div className="mt-8 border-zinc-800 border-t pt-4">
         <Link
           className="inline-flex items-center gap-1.5 font-bold text-emerald-400 text-xs transition-colors group-hover:text-emerald-300"
           href={language.href || '#'}

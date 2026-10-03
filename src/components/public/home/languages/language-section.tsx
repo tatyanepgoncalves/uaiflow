@@ -5,8 +5,8 @@ import { LanguagesSectionHeader } from './section-header'
 
 export default function LanguagesSection() {
   return (
-    <section className="w-full bg-[#03060C] px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl space-y-12">
+    <section className="flex w-full max-w-7xl items-center justify-center bg-[#03060C] px-4 sm:px-6 lg:px-8">
+      <div className="w-full space-y-12">
         {/* Cabeçalho */}
         <LanguagesSectionHeader />
 

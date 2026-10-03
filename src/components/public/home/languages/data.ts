@@ -14,7 +14,8 @@ export const LANGUAGES_DATA: LanguageItem[] = [
     nativeName: 'English',
     topics: [
       'Phrasal verbs idiomáticos (come up with, figure out)',
-      'Collocations executivas (meet a deadline, reach a consen...',
+      'Collocations executivas (meet a deadline, reach a consensus)',
+      'Conectivos de transição argumentativa (on the other hand, in light of)',
     ],
   },
   {
@@ -28,8 +29,9 @@ export const LANGUAGES_DATA: LanguageItem[] = [
     name: 'Espanhol',
     nativeName: 'Español',
     topics: [
-      'Locuções prepositivas e conectores (a pesar de que, por ...',
-      'Verbos com pronomes reflexivos e idiotismos (darse c...',
+      'Locuções prepositivas e conectores (a pesar de que, por lo tanto)',
+      'Verbos com pronomes reflexivos e idiomatismos (darse cuenta, echar de menos)',
+      'Diferenciação precisa entre por/para e ser/estar no nível B2',
     ],
   },
   {
@@ -43,8 +45,9 @@ export const LANGUAGES_DATA: LanguageItem[] = [
     name: 'Francês',
     nativeName: 'Français',
     topics: [
-      'Expressões com avoir/être fixos (se rendre compte, avoir...',
+      'Expressões com avoir/être fixos (se rendre compte, avoir beau)',
       'Subjuntivo em fórmulas de opinião (bien que, il faut que)',
+      'Conectores de discurso analítico (d’ailleurs, en revanche)',
     ],
   },
   {
@@ -58,8 +61,9 @@ export const LANGUAGES_DATA: LanguageItem[] = [
     name: 'Alemão',
     nativeName: 'Deutsch',
     topics: [
-      'Verbos separáveis em contexto de trabalho (vorbereiten,...',
-      'Regência fixa de preposições com Dativo/Acusativo (sich...',
+      'Verbos separáveis em contexto de trabalho (vorbereiten, stattfinden)',
+      'Regência fixa de preposições com Dativo/Acusativo (sich freuen auf/über)',
+      'Conectivos de causa e contraste (trotzdem, infolgedessen)',
     ],
   },
   {
@@ -73,8 +77,9 @@ export const LANGUAGES_DATA: LanguageItem[] = [
     name: 'Italiano',
     nativeName: 'Italiano',
     topics: [
-      'Verbi pronominali essenziali (farcela, andarsene, prender...',
-      "Fórmulas de cortesia e negociação (dare un'occhiata, me...",
+      'Verbi pronominali essenziali (farcela, andarsene, prendersela)',
+      'Fórmulas de cortesia e negociação (dare un’occhiata, mettere a punto)',
+      'Connettivi e transizioni fluide (in fin dei conti, a quanto pare)',
     ],
   },
 ]
