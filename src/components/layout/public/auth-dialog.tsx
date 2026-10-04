@@ -14,10 +14,10 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import useAuth from '@/hooks/public/use-auth'
+import useAuthDialog from '@/hooks/public/use-auth-dialog'
 
 export default function AuthDialog() {
-  const { isOpen, mode, handleOpenChange, handleTabChange } = useAuth()
+  const { isOpen, mode, handleOpenChange, handleTabChange } = useAuthDialog()
 
   return (
     <Dialog onOpenChange={handleOpenChange} open={isOpen}>

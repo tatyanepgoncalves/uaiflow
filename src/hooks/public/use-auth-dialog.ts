@@ -1,6 +1,6 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
-export default function useAuth() {
+export default function useAuthDialog() {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
