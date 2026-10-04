@@ -36,7 +36,7 @@ export default function AuthDialog() {
       <DialogOverlay className="fixed inset-0 z-50 animate-fade-in bg-zinc-950/80 backdrop-blur-sm" />
 
       <DialogContent
-        className="fixed top-1/2 left-1/2 z-50 w-full -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-zinc-800 bg-zinc-900 p-6 text-white shadow-2xl shadow-emerald-500/20 sm:max-w-md sm:p-8"
+        className="fixed top-1/2 left-1/2 z-50 w-full -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-zinc-800 bg-zinc-900 p-6 text-white shadow-2xl shadow-emerald-500/20 sm:max-w-2xl sm:p-8"
         showCloseButton={false}
       >
         <DialogClose className="absolute top-5 right-5 rounded-full p-2 text-slate-400 transition hover:bg-slate-800 hover:text-white">

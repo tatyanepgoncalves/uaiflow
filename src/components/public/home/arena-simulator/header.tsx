@@ -19,6 +19,7 @@ export function ArenaHeader({ currentLang, onLanguageChange }: HeaderProps) {
       </div>
 
       <Tabs
+        // biome-ignore lint/performance/noJsxPropsBind: it's necessary
         onValueChange={(val) => onLanguageChange(val as LanguageKey)}
         value={currentLang}
       >

@@ -135,7 +135,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       // Requisita o endpoint de revogação/signout no servidor
       await handleSignOut()
-    } catch (error) {
+    } catch {
       throw new Error('Erro ao efetuar logout no servidor.')
     } finally {
       // Garante a remoção dos cookies locais em qualquer cenário
@@ -145,7 +145,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(false)
 
       // Redireciona o leitor/usuário para a tela de login
-      router.push('/entrar')
+      router.push('/')
     }
   }, [router])
 

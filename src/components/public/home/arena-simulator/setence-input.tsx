@@ -30,6 +30,7 @@ export function SentenceInput({
         <Input
           className="h-16 w-full rounded-xl border-zinc-800 bg-[#05080E] px-4 text-sm text-zinc-100 placeholder-zinc-500 transition focus-visible:border-emerald-500 focus-visible:ring-1 focus-visible:ring-emerald-500"
           id="phrase-input"
+          // biome-ignore lint/performance/noJsxPropsBind: it's necessary
           onChange={(e) => onChange(e.target.value)}
           value={value}
         />
