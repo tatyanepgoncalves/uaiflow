@@ -62,7 +62,7 @@ export default function useRegister() {
       })
 
       form.reset()
-      router.push('/central-de-chunks')
+      router.push('/cadastrar-contexto')
 
       // biome-ignore lint/suspicious/noExplicitAny: it's necessary
     } catch (error: any) {
