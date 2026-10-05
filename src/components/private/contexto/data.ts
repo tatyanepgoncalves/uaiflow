@@ -12,3 +12,16 @@ export const PRESET_TOPICS = [
   'Engenharia & Arquitetura',
   'Debates e Políticas Globais',
 ]
+
+export const PRESET_HOBBIES = [
+  'Programação & Coding',
+  'Leitura & Literatura',
+  'Música & Tocar Instrumentos',
+  'Culinária & Gastronomia',
+  'Esportes, Corrida & Fitness',
+  'Fotografia & Cinema',
+  'Meditação & Mindfulness',
+  'Jogos de Tabuleiro & Xadrez',
+  'Viagens & Mochilão',
+  'Podcasts & Aprendizagem Contínua',
+]

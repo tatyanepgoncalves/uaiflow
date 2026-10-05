@@ -6,9 +6,10 @@ import { useCallback, useState } from 'react'
 import { toast } from '@/components/ui/toast'
 import type { CreateUserContextBodyData } from '@/schemas/user-contexto/create-user-context'
 import { createUserContext } from '@/services/user-context-service'
-import { PRESET_TOPICS } from './data'
+import useHobbiesInteresses from './hobbies-interesses/use-hobbies-interests'
+import useTemaConteudos from './temas-conteudos/use-tema-conteudos'
 
-const TABS = [
+export const TABS = [
   'temas-conteudos',
   'hobbies-interesses',
   'nivel-cefr',
@@ -16,56 +17,54 @@ const TABS = [
   'neuroaprendizagem',
 ] as const
 
-type TabValue = (typeof TABS)[number]
+export type TabValue = (typeof TABS)[number]
 
 export default function useUserContextFlow(languageSlug = 'ingles') {
   const router = useRouter()
   const [activeTab, setActiveTab] = useState<TabValue>('temas-conteudos')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // Estados dos dados capturados ao longo do fluxo
-  const [favoriteTopics, setFavoriteTopics] = useState<string[]>([])
-  const [customTopics, setCustomTopics] = useState<string[]>([]) // Estado para armazenar os novos temas
-  const [customTopic, setCustomTopic] = useState('')
+  const {
+    addCustomTopic,
+    allTopics,
+    customTopic,
+    customTopics,
+    favoriteTopics,
+    handleCustomTopicChange,
+    handleKeyDown,
+    setCustomTopic,
+    setCustomTopics,
+    setFavoriteTopics,
+    toggleTopic,
+  } = useTemaConteudos()
+  const {
+    addCustomHobby,
+    allHobbies,
+    customHobbies,
+    customHobby,
+    favoriteHobbies,
+    handleCustomHobbyChange,
+    handleKeyDownHobby,
+    hobbies,
+    setCustomHobbies,
+    setCustomHobby,
+    setFavoriteHobbies,
+    setHobbies,
+    toggleHobby,
+  } = useHobbiesInteresses()
 
-  const [hobbies, setHobbies] = useState<string[]>([])
+  // Estados dos dados capturados ao longo do fluxo
+
   const [level, setLevel] = useState<'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'>(
     'A1'
   )
   const [learningGoals, setLearningGoals] = useState<string[]>([])
   const [difficulties, setDifficulties] = useState<string[]>([])
 
-  // Validação por etapa para liberar o botão "Avançar" / Abas
+  // Validações de navegação
+  const isFirstTab = activeTab === TABS[0]
   const isStepValid = favoriteTopics.length > 0
   const isLastTab = activeTab === TABS.at(-1)
-
-  const handleCustomTopicChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setCustomTopic(e.target.value)
-    },
-    []
-  )
-
-  const addCustomTopic = useCallback(() => {
-    setCustomTopic((currentValue) => {
-      const trimmed = currentValue.trim()
-      if (!trimmed) {
-        return currentValue
-      }
-
-      setCustomTopics((prev) =>
-        prev.includes(trimmed) || PRESET_TOPICS.includes(trimmed)
-          ? prev
-          : [...prev, trimmed]
-      )
-
-      setFavoriteTopics((prev) =>
-        prev.includes(trimmed) ? prev : [...prev, trimmed]
-      )
-
-      return '' // Limpa o input
-    })
-  }, [])
 
   const handleNextTab = useCallback(async () => {
     const currentIndex = TABS.indexOf(activeTab)
@@ -120,47 +119,50 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
     router,
   ])
 
-  const toggleTopic = (topic: string) => {
-    setFavoriteTopics((prev) =>
-      prev.includes(topic) ? prev.filter((t) => t !== topic) : [...prev, topic]
-    )
-  }
+  const handleBackTab = useCallback(async () => {
+    const currentIndex = TABS.indexOf(activeTab)
 
-  // Handler estável para a tecla Enter
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (e.key === 'Enter') {
-        e.preventDefault()
-        addCustomTopic()
-      }
-    },
-    [addCustomTopic]
-  )
-
-  // Combina os tópicos predefinidos com os criados pelo utilizador
-  const allTopics = [...PRESET_TOPICS, ...customTopics]
+    if (currentIndex) {
+      setActiveTab(TABS[currentIndex - 1])
+    }
+  }, [activeTab])
 
   return {
     activeTab,
+    addCustomHobby,
     addCustomTopic,
+    allHobbies,
     allTopics,
+    customHobbies,
+    customHobby,
     customTopic,
+    customTopics,
+    favoriteHobbies,
     favoriteTopics,
+    handleBackTab,
+    handleCustomHobbyChange,
     handleCustomTopicChange,
     handleKeyDown,
+    handleKeyDownHobby,
     handleNextTab,
+    hobbies,
     isLastTab,
     isNextDisabled: !isStepValid || isLastTab,
     isStepValid,
     isSubmitting,
     level,
     setActiveTab,
+    setCustomHobbies,
+    setCustomHobby,
+    setCustomTopic,
+    setCustomTopics,
     setDifficulties,
+    setFavoriteHobbies,
     setFavoriteTopics,
-
     setHobbies,
     setLearningGoals,
     setLevel,
+    toggleHobby,
     toggleTopic,
   }
 }

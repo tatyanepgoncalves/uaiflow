@@ -1,6 +1,7 @@
 'use client'
 
 import { Brain } from 'lucide-react'
+import HobbiesInteresses from '@/components/private/contexto/hobbies-interesses/hobbies-interesses'
 import TemasConteudos from '@/components/private/contexto/temas-conteudos/temas-conteudos'
 import useUserContextFlow from '@/components/private/contexto/use-user-context-flow'
 import {
@@ -16,7 +17,7 @@ export default function CadastrarContexto() {
   const flow = useUserContextFlow()
 
   return (
-    <section className="flex h-screen items-center justify-center">
+    <section className="flex h-screen items-center justify-center px-4">
       <Card className="w-full max-w-3xl border border-zinc-800 shadow-2xl shadow-zinc-800">
         <CardHeader className="flex flex-row items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-linear-to-tr from-emerald-500 via-teal-500 to-indigo-500">
@@ -36,29 +37,42 @@ export default function CadastrarContexto() {
 
         <CardContent>
           <Tabs
-            className="space-y-8"
+            className="space-y-8 truncate"
             // biome-ignore lint/performance/noJsxPropsBind: it's necessary
             // biome-ignore lint/suspicious/noExplicitAny: it's necessary
             onValueChange={(val) => flow.setActiveTab(val as any)}
             value={flow.activeTab}
           >
             <TabsList className="gap-3 shadow-2xl shadow-zinc-800">
-              <TabsTrigger value="temas-conteudos">
+              <TabsTrigger
+                className="max-w-30 truncate"
+                value="temas-conteudos"
+              >
                 Temas & Conteúdos
               </TabsTrigger>
               <TabsTrigger
+                className="truncate"
                 disabled={!flow.isStepValid}
                 value="hobbies-interesses"
               >
                 Hobbies & Interesses
               </TabsTrigger>
-              <TabsTrigger disabled={!flow.isStepValid} value="nivel-cefr">
+              <TabsTrigger
+                className="truncate"
+                disabled={!flow.isStepValid}
+                value="nivel-cefr"
+              >
                 Nível CEFR
               </TabsTrigger>
-              <TabsTrigger disabled={!flow.isStepValid} value="sotaque-foco">
+              <TabsTrigger
+                className="truncate"
+                disabled={!flow.isStepValid}
+                value="sotaque-foco"
+              >
                 Sotaque & Foco
               </TabsTrigger>
               <TabsTrigger
+                className="truncate"
                 disabled={!flow.isStepValid}
                 value="neuroaprendizagem"
               >
@@ -81,9 +95,19 @@ export default function CadastrarContexto() {
               />
             </TabsContent>
             <TabsContent className="px-2" value="hobbies-interesses">
-              <p className="text-muted-foreground text-sm">
-                Descreva seus hobbies e interesses para personalizar o conteúdo.
-              </p>
+              <HobbiesInteresses
+                addCustomHobby={flow.addCustomHobby}
+                allHobbies={flow.allHobbies}
+                customHobby={flow.customHobby}
+                favoriteHobbies={flow.favoriteHobbies}
+                handleBackTab={flow.handleBackTab}
+                handleCustomHobbyChange={flow.handleCustomHobbyChange}
+                handleKeyDownHobby={flow.handleKeyDownHobby}
+                handleNextTab={flow.handleNextTab}
+                isLastTab={flow.isLastTab}
+                isNextDisabled={flow.isNextDisabled}
+                toggleHobby={flow.toggleHobby}
+              />
             </TabsContent>
             <TabsContent className="px-2" value="nivel-cefr">
               <p className="text-muted-foreground text-sm">

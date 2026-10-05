@@ -1,7 +1,7 @@
-import { BookOpen, ChevronRight } from 'lucide-react'
+import { BookOpen, ChevronRight, CircleCheck } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { TopicButton } from './topic-button'
+import { TopicButton } from '../topic-button'
 
 interface TemasConteudosProps {
   addCustomTopic: () => void
@@ -47,9 +47,14 @@ export default function TemasConteudos({
       <div className="flex flex-wrap gap-2">
         {allTopics.map((topic) => (
           <TopicButton
+            background="bg-emerald-500/20"
+            border="border-emerald-500"
+            color="text-emerald-400"
+            Icon={CircleCheck}
             isSelected={favoriteTopics.includes(topic)}
             key={topic}
             onToggle={toggleTopic}
+            text="text-emerald-300"
             topic={topic}
           />
         ))}
