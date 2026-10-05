@@ -2,6 +2,7 @@
 
 import { Brain } from 'lucide-react'
 import HobbiesInteresses from '@/components/private/contexto/hobbies-interesses/hobbies-interesses'
+import NivelCefr from '@/components/private/contexto/nivel-cefr/nivel-cefr'
 import TemasConteudos from '@/components/private/contexto/temas-conteudos/temas-conteudos'
 import useUserContextFlow from '@/components/private/contexto/use-user-context-flow'
 import {
@@ -110,9 +111,16 @@ export default function CadastrarContexto() {
               />
             </TabsContent>
             <TabsContent className="px-2" value="nivel-cefr">
-              <p className="text-muted-foreground text-sm">
-                Selecione seu nível de proficiência no idioma.
-              </p>
+              <NivelCefr
+                currentLevel={flow.currentLevel}
+                handleBackTab={flow.handleBackTab}
+                handleNextTab={flow.handleNextTab}
+                isLastTab={flow.isLastTab}
+                isNextDisabled={flow.isNextDisabled}
+                setCurrentLevel={flow.setCurrentLevel}
+                setTargetLevel={flow.setTargetLevel}
+                targetLevel={flow.targetLevel}
+              />
             </TabsContent>
             <TabsContent className="px-2" value="sotaque-foco">
               <p className="text-muted-foreground text-sm">

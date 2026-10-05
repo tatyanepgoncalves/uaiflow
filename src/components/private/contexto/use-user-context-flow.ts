@@ -2,11 +2,11 @@
 
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
-
 import { toast } from '@/components/ui/toast'
 import type { CreateUserContextBodyData } from '@/schemas/user-contexto/create-user-context'
 import { createUserContext } from '@/services/user-context-service'
 import useHobbiesInteresses from './hobbies-interesses/use-hobbies-interests'
+import useNivelCefr from './nivel-cefr/use-nivel-cefr'
 import useTemaConteudos from './temas-conteudos/use-tema-conteudos'
 
 export const TABS = [
@@ -53,11 +53,11 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
     toggleHobby,
   } = useHobbiesInteresses()
 
+  const { currentLevel, setCurrentLevel, setTargetLevel, targetLevel } =
+    useNivelCefr()
+
   // Estados dos dados capturados ao longo do fluxo
 
-  const [level, setLevel] = useState<'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'>(
-    'A1'
-  )
   const [learningGoals, setLearningGoals] = useState<string[]>([])
   const [difficulties, setDifficulties] = useState<string[]>([])
 
@@ -74,7 +74,7 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
       setIsSubmitting(true)
 
       const payload: CreateUserContextBodyData = {
-        currentLevel: level,
+        currentLevel,
         dailyGoalChunks: 3,
         difficultyNotes: difficulties,
         interests: [...favoriteTopics, ...hobbies], // Combina temas e hobbies
@@ -110,7 +110,7 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
   }, [
     activeTab,
     isLastTab,
-    level,
+    currentLevel,
     favoriteTopics,
     hobbies,
     learningGoals,
@@ -119,10 +119,10 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
     router,
   ])
 
-  const handleBackTab = useCallback(async () => {
+  const handleBackTab = useCallback(() => {
     const currentIndex = TABS.indexOf(activeTab)
 
-    if (currentIndex) {
+    if (currentIndex > 0) {
       setActiveTab(TABS[currentIndex - 1])
     }
   }, [activeTab])
@@ -133,6 +133,8 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
     addCustomTopic,
     allHobbies,
     allTopics,
+
+    currentLevel,
     customHobbies,
     customHobby,
     customTopic,
@@ -146,12 +148,13 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
     handleKeyDownHobby,
     handleNextTab,
     hobbies,
+    isFirstTab,
     isLastTab,
-    isNextDisabled: !isStepValid || isLastTab,
+    isNextDisabled: !isStepValid,
     isStepValid,
     isSubmitting,
-    level,
     setActiveTab,
+    setCurrentLevel,
     setCustomHobbies,
     setCustomHobby,
     setCustomTopic,
@@ -161,7 +164,8 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
     setFavoriteTopics,
     setHobbies,
     setLearningGoals,
-    setLevel,
+    setTargetLevel,
+    targetLevel,
     toggleHobby,
     toggleTopic,
   }
