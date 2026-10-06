@@ -13,6 +13,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import Languages from '@/components/private/contexto/idioma/languages'
 
 export default function CadastrarContexto() {
   const flow = useUserContextFlow()
@@ -44,43 +45,69 @@ export default function CadastrarContexto() {
             onValueChange={(val) => flow.setActiveTab(val as any)}
             value={flow.activeTab}
           >
+            
+
             <TabsList className="gap-3 shadow-2xl shadow-zinc-800">
               <TabsTrigger
                 className="max-w-30 truncate"
+                value="idiomas"
+              >
+                Idiomas 
+              </TabsTrigger>
+              <TabsTrigger
+                className="max-w-30 truncate"
+                disabled={!flow.isLanguageValid}
                 value="temas-conteudos"
               >
                 Temas & Conteúdos
               </TabsTrigger>
               <TabsTrigger
                 className="truncate"
-                disabled={!flow.isStepValid}
+                disabled={!flow.isLanguageValid}
                 value="hobbies-interesses"
               >
                 Hobbies & Interesses
               </TabsTrigger>
               <TabsTrigger
                 className="truncate"
-                disabled={!flow.isStepValid}
+                disabled={!flow.isLanguageValid}
                 value="nivel-cefr"
               >
                 Nível CEFR
               </TabsTrigger>
               <TabsTrigger
                 className="truncate"
-                disabled={!flow.isStepValid}
+                disabled={!flow.isLanguageValid}
                 value="sotaque-foco"
               >
                 Sotaque & Foco
               </TabsTrigger>
               <TabsTrigger
                 className="truncate"
-                disabled={!flow.isStepValid}
+                disabled={!flow.isLanguageValid}
                 value="neuroaprendizagem"
               >
                 Neuroaprendizagem
               </TabsTrigger>
             </TabsList>
 
+            <TabsContent className="px-2" value="idiomas">
+              <Languages
+                addCustomLanguage={flow.addCustomLanguage}
+                customLanguageCode={flow.customLanguageCode}
+                customLanguageName={flow.customLanguageName}
+                handleBackTab={flow.handleBackTab}
+                handleCustomCodeChange={flow.handleCustomCodeChange}
+                handleCustomNameChange={flow.handleCustomNameChange}
+                handleKeyDownLanguage={flow.handleKeyDownLanguage}
+                handleNextTab={flow.handleNextTab}
+                isNextDisabled={flow.isNextDisabled}
+                languages={flow.languages}
+                selectedLanguageCode={flow.selectedLanguageCode}
+                toggleLanguage={flow.toggleLanguage}
+              />
+            </TabsContent>
+            
             <TabsContent className="px-2" value="temas-conteudos">
               <TemasConteudos
                 addCustomTopic={flow.addCustomTopic}
@@ -95,6 +122,8 @@ export default function CadastrarContexto() {
                 toggleTopic={flow.toggleTopic}
               />
             </TabsContent>
+
+
             <TabsContent className="px-2" value="hobbies-interesses">
               <HobbiesInteresses
                 addCustomHobby={flow.addCustomHobby}

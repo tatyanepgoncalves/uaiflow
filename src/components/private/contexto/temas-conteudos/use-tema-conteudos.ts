@@ -54,6 +54,9 @@ export default function useTemaConteudos() {
   // Combina os tópicos predefinidos com os criados pelo utilizador
   const allTopics = [...PRESET_TOPICS, ...customTopics]
 
+  // Validação de navegação
+  const isStepValidTheme = favoriteTopics.length > 0
+
   return {
     addCustomTopic,
     allTopics,
@@ -62,6 +65,8 @@ export default function useTemaConteudos() {
     favoriteTopics,
     handleCustomTopicChange,
     handleKeyDown,
+
+    isStepValidTheme,
     setCustomTopic,
     setCustomTopics,
     setFavoriteTopics,

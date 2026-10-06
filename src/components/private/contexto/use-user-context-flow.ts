@@ -6,10 +6,12 @@ import { toast } from '@/components/ui/toast'
 import type { CreateUserContextBodyData } from '@/schemas/user-contexto/create-user-context'
 import { createUserContext } from '@/services/user-context-service'
 import useHobbiesInteresses from './hobbies-interesses/use-hobbies-interests'
+import useLanguages from './idioma/use-languages'
 import useNivelCefr from './nivel-cefr/use-nivel-cefr'
 import useTemaConteudos from './temas-conteudos/use-tema-conteudos'
 
 export const TABS = [
+  'idiomas',
   'temas-conteudos',
   'hobbies-interesses',
   'nivel-cefr',
@@ -21,7 +23,7 @@ export type TabValue = (typeof TABS)[number]
 
 export default function useUserContextFlow(languageSlug = 'ingles') {
   const router = useRouter()
-  const [activeTab, setActiveTab] = useState<TabValue>('temas-conteudos')
+  const [activeTab, setActiveTab] = useState<TabValue>('idiomas')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const {
@@ -36,6 +38,7 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
     setCustomTopics,
     setFavoriteTopics,
     toggleTopic,
+    isStepValidTheme,
   } = useTemaConteudos()
   const {
     addCustomHobby,
@@ -56,6 +59,23 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
   const { currentLevel, setCurrentLevel, setTargetLevel, targetLevel } =
     useNivelCefr()
 
+  const {
+    addCustomLanguage,
+    customLanguageCode,
+    customLanguageName,
+    handleCustomCodeChange,
+    handleCustomNameChange,
+    handleKeyDownLanguage,
+    isCreatingLanguage,
+    isErrorLanguage,
+    isLoadingLanguages,
+    languages,
+    selectedLanguageCode,
+    setSelectedLanguageCode,
+    toggleLanguage,
+    favoriteLanguages,
+  } = useLanguages()
+
   // Estados dos dados capturados ao longo do fluxo
 
   const [learningGoals, setLearningGoals] = useState<string[]>([])
@@ -63,8 +83,37 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
 
   // Validações de navegação
   const isFirstTab = activeTab === TABS[0]
-  const isStepValid = favoriteTopics.length > 0
   const isLastTab = activeTab === TABS.at(-1)
+
+  // Validação individuais
+  const isTopicsValid = favoriteTopics.length > 0
+  const isLanguageValid = Boolean(selectedLanguageCode)
+  const isHobbiesValid = favoriteHobbies.length > 0
+  const isLanguagesValid = favoriteLanguages.length > 0
+
+
+  // Define a validade dinamicamente com base na aba em que o usuário está
+  const isCurrentStepValid = (() => {
+    switch (activeTab) {
+      case 'idiomas':
+        return isLanguageValid
+      case 'temas-conteudos':
+        return isTopicsValid
+      case 'hobbies-interesses':
+        return isHobbiesValid
+      case 'nivel-cefr':
+      case 'sotaque-foco':
+      case 'neuroaprendizagem':
+        return true
+      default:
+        return false
+    }
+  })()
+
+  // Validação por etapa
+
+  const isStepValidLanguage =
+    activeTab === 'idiomas' ? isLanguageValid : isLanguagesValid
 
   const handleNextTab = useCallback(async () => {
     const currentIndex = TABS.indexOf(activeTab)
@@ -130,29 +179,47 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
   return {
     activeTab,
     addCustomHobby,
+    addCustomLanguage,
     addCustomTopic,
     allHobbies,
     allTopics,
 
     currentLevel,
+
     customHobbies,
     customHobby,
+
+    customLanguageCode,
+    customLanguageName,
     customTopic,
     customTopics,
     favoriteHobbies,
     favoriteTopics,
     handleBackTab,
+    handleCustomCodeChange,
     handleCustomHobbyChange,
+    handleCustomNameChange,
     handleCustomTopicChange,
     handleKeyDown,
     handleKeyDownHobby,
+    handleKeyDownLanguage,
     handleNextTab,
     hobbies,
+    isCreatingLanguage,
+    isErrorLanguage,
     isFirstTab,
+    isLanguagesValid,
+    isLanguageValid,
     isLastTab,
-    isNextDisabled: !isStepValid,
-    isStepValid,
+    isLoadingLanguages,
+    isNextDisabled: !isCurrentStepValid,
+    isStepValid: isLanguageValid,
+    isStepValidLanguage,
+
+    isStepValidTheme,
     isSubmitting,
+    languages,
+    selectedLanguageCode,
     setActiveTab,
     setCurrentLevel,
     setCustomHobbies,
@@ -164,9 +231,11 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
     setFavoriteTopics,
     setHobbies,
     setLearningGoals,
+    setSelectedLanguageCode,
     setTargetLevel,
     targetLevel,
     toggleHobby,
+    toggleLanguage,
     toggleTopic,
   }
 }
