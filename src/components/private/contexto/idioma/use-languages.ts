@@ -20,7 +20,7 @@ export default function useLanguages() {
   const [customLanguageCode, setCustomLanguageCode] = useState('')
   const [favoriteLanguages, setFavoriteLanguages] = useState<string[]>([])
 
-  // 1. GET /languages
+  // GET /languages
   const {
     data: languages = [],
     isError: isErrorLanguage,
@@ -30,7 +30,7 @@ export default function useLanguages() {
     queryKey: ['languages'],
   })
 
-  // 2. POST /languages
+  // POST /languages
   const createLanguageMutation = useMutation({
     mutationFn: createLanguage,
     // biome-ignore lint/suspicious/noExplicitAny: it's necessary
@@ -99,6 +99,10 @@ export default function useLanguages() {
     [addCustomLanguage]
   )
 
+  const selectedLanguage = languages.find(
+    (lang) => lang.code === selectedLanguageCode
+  )
+
   return {
     addCustomLanguage,
     customLanguageCode,
@@ -111,6 +115,7 @@ export default function useLanguages() {
     isErrorLanguage,
     isLoadingLanguages,
     languages,
+    selectedLanguage,
     selectedLanguageCode,
     setFavoriteLanguages,
     setSelectedLanguageCode,

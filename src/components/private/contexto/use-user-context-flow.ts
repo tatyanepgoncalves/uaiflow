@@ -7,6 +7,7 @@ import type { CreateUserContextBodyData } from '@/schemas/user-contexto/create-u
 import { createUserContext } from '@/services/user-context-service'
 import useHobbiesInteresses from './hobbies-interesses/use-hobbies-interests'
 import useLanguages from './idioma/use-languages'
+import useLanguageAccent from './idioma-sotaque/use-language-accent'
 import useNivelCefr from './nivel-cefr/use-nivel-cefr'
 import useTemaConteudos from './temas-conteudos/use-tema-conteudos'
 
@@ -40,6 +41,7 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
     toggleTopic,
     isStepValidTheme,
   } = useTemaConteudos()
+
   const {
     addCustomHobby,
     allHobbies,
@@ -59,10 +61,12 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
   const { currentLevel, setCurrentLevel, setTargetLevel, targetLevel } =
     useNivelCefr()
 
+  // Idiomas (Captura o idioma selecionado na 1ª aba)
   const {
     addCustomLanguage,
     customLanguageCode,
     customLanguageName,
+    favoriteLanguages,
     handleCustomCodeChange,
     handleCustomNameChange,
     handleKeyDownLanguage,
@@ -73,10 +77,27 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
     selectedLanguageCode,
     setSelectedLanguageCode,
     toggleLanguage,
-    favoriteLanguages,
   } = useLanguages()
 
-  // Estados dos dados capturados ao longo do fluxo
+  // Encontra o idioma selecionado na lista completa
+  const selectedLanguage = languages.find(
+    (lang) => lang.code === selectedLanguageCode
+  )
+
+  // Sotaques (Passa o ID do idioma selecionado para buscar e vincular sotaques)
+  const {
+    addCustomAccent,
+    availableAccents,
+    customAccentName,
+    handleCustomAccentChange,
+    handleKeyDownAccent,
+    isCreatingAccent,
+    isErrorAccents,
+    isLoadingAccents,
+    selectedAccent,
+    setSelectedAccent,
+    toggleAccent,
+  } = useLanguageAccent(selectedLanguage?.id || '')
 
   const [learningGoals, setLearningGoals] = useState<string[]>([])
   const [difficulties, setDifficulties] = useState<string[]>([])
@@ -85,14 +106,12 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
   const isFirstTab = activeTab === TABS[0]
   const isLastTab = activeTab === TABS.at(-1)
 
-  // Validação individuais
   const isTopicsValid = favoriteTopics.length > 0
   const isLanguageValid = Boolean(selectedLanguageCode)
   const isHobbiesValid = favoriteHobbies.length > 0
   const isLanguagesValid = favoriteLanguages.length > 0
+  const isAccentValid = availableAccents.length === 0 || Boolean(selectedAccent)
 
-
-  // Define a validade dinamicamente com base na aba em que o usuário está
   const isCurrentStepValid = (() => {
     switch (activeTab) {
       case 'idiomas':
@@ -102,7 +121,9 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
       case 'hobbies-interesses':
         return isHobbiesValid
       case 'nivel-cefr':
+        return isAccentValid
       case 'sotaque-foco':
+        return isAccentValid
       case 'neuroaprendizagem':
         return true
       default:
@@ -110,15 +131,12 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
     }
   })()
 
-  // Validação por etapa
-
   const isStepValidLanguage =
     activeTab === 'idiomas' ? isLanguageValid : isLanguagesValid
 
   const handleNextTab = useCallback(async () => {
     const currentIndex = TABS.indexOf(activeTab)
 
-    // Se estiver na última aba, faz a submissão final ao backend
     if (isLastTab) {
       setIsSubmitting(true)
 
@@ -126,7 +144,7 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
         currentLevel,
         dailyGoalChunks: 3,
         difficultyNotes: difficulties,
-        interests: [...favoriteTopics, ...hobbies], // Combina temas e hobbies
+        interests: [...favoriteTopics, ...hobbies],
         isActive: true,
         learningGoals,
       }
@@ -154,7 +172,6 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
       return
     }
 
-    // Caso contrário, avança para a próxima aba
     setActiveTab(TABS[currentIndex + 1])
   }, [
     activeTab,
@@ -178,17 +195,17 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
 
   return {
     activeTab,
+    addCustomAccent,
     addCustomHobby,
     addCustomLanguage,
     addCustomTopic,
     allHobbies,
     allTopics,
-
+    availableAccents,
     currentLevel,
-
+    customAccentName,
     customHobbies,
     customHobby,
-
     customLanguageCode,
     customLanguageName,
     customTopic,
@@ -196,29 +213,35 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
     favoriteHobbies,
     favoriteTopics,
     handleBackTab,
+    handleCustomAccentChange,
     handleCustomCodeChange,
     handleCustomHobbyChange,
     handleCustomNameChange,
     handleCustomTopicChange,
     handleKeyDown,
+    handleKeyDownAccent,
     handleKeyDownHobby,
     handleKeyDownLanguage,
     handleNextTab,
     hobbies,
+    isCreatingAccent,
     isCreatingLanguage,
+    isErrorAccents,
     isErrorLanguage,
     isFirstTab,
     isLanguagesValid,
     isLanguageValid,
     isLastTab,
+    isLoadingAccents,
     isLoadingLanguages,
     isNextDisabled: !isCurrentStepValid,
     isStepValid: isLanguageValid,
     isStepValidLanguage,
-
     isStepValidTheme,
     isSubmitting,
     languages,
+    selectedAccent,
+    selectedLanguage, // Objeto completo do idioma selecionado ({ id, code, name })
     selectedLanguageCode,
     setActiveTab,
     setCurrentLevel,
@@ -231,9 +254,11 @@ export default function useUserContextFlow(languageSlug = 'ingles') {
     setFavoriteTopics,
     setHobbies,
     setLearningGoals,
+    setSelectedAccent,
     setSelectedLanguageCode,
     setTargetLevel,
     targetLevel,
+    toggleAccent,
     toggleHobby,
     toggleLanguage,
     toggleTopic,

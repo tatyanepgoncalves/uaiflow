@@ -33,7 +33,7 @@ export default function UserAvatar() {
           />
         }
       >
-        <span className="hidden max-w-[100px] truncate font-semibold text-slate-200 text-xs sm:inline">
+        <span className="hidden max-w-25 truncate font-semibold text-slate-200 text-xs sm:inline">
           {user?.name}
         </span>
         <Avatar>
