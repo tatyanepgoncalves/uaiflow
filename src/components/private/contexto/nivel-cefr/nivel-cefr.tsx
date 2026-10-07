@@ -45,10 +45,10 @@ export default function NivelCefr({
 
       {/* CURRENT LEVEL */}
       <div className="space-y-2">
-        <Label className="font-semibold text-xs text-zinc-300">
+        <Label className="font-semibold text-sm text-zinc-300">
           Onde você está hoje no idioma
         </Label>
-        <div className="grid gap-3 md:grid-cols-3">
+        <div className="grid gap-3 md:grid-cols-3 lg:grid-cols-6">
           {CEFR_LEVELS.map((item) => {
             const isSelected = currentLevel === item.level
             return (
@@ -65,23 +65,23 @@ export default function NivelCefr({
                 type="button"
               >
                 <div className="flex items-center justify-between">
-                  <div
+                  <h2
                     className={cn(
-                      'font-black text-sm',
+                      'font-black text-sm truncate',
                       isSelected ? 'text-indigo-300' : 'text-zinc-200'
                     )}
                   >
                     {item.title}
-                  </div>
+                  </h2>
                 </div>
-                <div
+                <p
                   className={cn(
-                    'mt-1.5 text-wrap text-[11px] leading-tight',
+                    'mt-1.5 text-wrap text-[11px] leading-tight lg:sr-only',
                     isSelected ? 'text-zinc-300' : 'text-zinc-400'
                   )}
                 >
                   {item.desc}
-                </div>
+                </p>
               </button>
             )
           })}
@@ -90,10 +90,10 @@ export default function NivelCefr({
 
       {/* TARGET LEVEL */}
       <div className="space-y-2 pt-2">
-        <Label className="font-semibold text-xs text-zinc-300">
+        <Label className="font-semibold text-sm text-zinc-300">
           Qual o seu objetivo CEFR alvo
         </Label>
-        <div className="grid gap-3 md:grid-cols-3">
+        <div className="grid gap-3 md:grid-cols-3 lg:grid-cols-6">
           {CEFR_LEVELS.map((item) => {
             const isSelected = targetLevel === item.level
             return (
@@ -110,23 +110,23 @@ export default function NivelCefr({
                 type="button"
               >
                 <div className="flex items-center justify-between">
-                  <div
+                  <h2
                     className={cn(
-                      'font-black text-sm',
+                      'font-black text-sm truncate',
                       isSelected ? 'text-emerald-300' : 'text-zinc-200'
                     )}
                   >
                     {item.title}
-                  </div>
+                  </h2>
                 </div>
-                <div
+                <p
                   className={cn(
-                    'mt-1.5 text-wrap text-[11px] leading-tight',
+                    'mt-1.5 text-wrap text-[11px] leading-tight lg:sr-only',
                     isSelected ? 'text-zinc-300' : 'text-zinc-400'
                   )}
                 >
                   {item.desc}
-                </div>
+                </p>
               </button>
             )
           })}

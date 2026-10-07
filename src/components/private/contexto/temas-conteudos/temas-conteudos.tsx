@@ -1,16 +1,20 @@
-import { BookOpen, ChevronRight, CircleCheck } from 'lucide-react'
+import { BookOpen, ChevronLeft, ChevronRight, CircleCheck } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { TopicButton } from '../topic-button'
 
 interface TemasConteudosProps {
   addCustomTopic: () => void
+
   allTopics: string[]
   customTopic: string
   favoriteTopics: string[]
+
+  handleBackTab: () => void
   handleCustomTopicChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   handleKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void
   handleNextTab: () => void
+  isFirstTab: boolean
   isLastTab: boolean
   isNextDisabled: boolean
   toggleTopic: (topic: string) => void
@@ -19,6 +23,8 @@ interface TemasConteudosProps {
 export default function TemasConteudos({
   addCustomTopic,
   allTopics,
+  isFirstTab,
+  handleBackTab,
   customTopic,
   favoriteTopics,
   toggleTopic,
@@ -81,7 +87,14 @@ export default function TemasConteudos({
 
       <Separator />
 
-      <div className="flex justify-end">
+      <div className="flex justify-between">
+        <Button
+          className="h-10 rounded-2xl border border-slate-700 bg-slate-800 px-6 font-bold text-slate-200 text-xs hover:bg-slate-700"
+          onClick={handleBackTab}
+        >
+          <ChevronLeft className="h-4 w-4" />
+          <span>Voltar</span>
+        </Button>
         <Button
           className="h-10 rounded-xl bg-emerald-400 px-6 shadow-2xl shadow-emerald-500 hover:scale-105"
           disabled={isNextDisabled}

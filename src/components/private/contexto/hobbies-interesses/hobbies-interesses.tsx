@@ -45,6 +45,7 @@ export default function HobbiesInteresses({
           plasticidade neural.
         </p>
       </div>
+
       <div className="flex flex-wrap gap-2">
         {allHobbies.map((hobby) => (
           <TopicButton
