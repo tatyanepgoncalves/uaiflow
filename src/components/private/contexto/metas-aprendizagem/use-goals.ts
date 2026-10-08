@@ -10,8 +10,6 @@ export default function useGoals() {
   const [selectedGoals, setSelectedGoals] = useState<string[]>([])
   const [customGoal, setCustomGoal] = useState<string>('')
 
-  
-
   // Presets para Motivos de Aprendizado
   const presetGoals = [
     'Carreira / Oportunidades de Trabalho',
@@ -21,7 +19,6 @@ export default function useGoals() {
     'Desenvolvimento Pessoal / Hobby',
     'Consumir mídias (Filmes, Livros, Músicas)',
   ]
-
 
   // Handlers para Meta de Chunks
   const handleIncreaseGoal = useCallback(() => {
@@ -71,8 +68,6 @@ export default function useGoals() {
     setSelectedGoals((prev) => prev.filter((item) => item !== goal))
   }, [])
 
-
-
   return {
     customGoal,
     dailyGoalChunks,
@@ -85,7 +80,6 @@ export default function useGoals() {
 
     presetGoals,
 
-   
     selectedGoals,
     setCustomGoal,
     setDailyGoalChunks,

@@ -1,3 +1,4 @@
+import HeaderPrivate from "@/components/layout/private/header/header-private"
 
 interface PrivateLayoutProps {
    children: React.ReactNode
@@ -5,9 +6,8 @@ interface PrivateLayoutProps {
 
 export default function PrivateLayout({ children }: PrivateLayoutProps) {
   return (
-      <section
-        
-      >
+      <section> 
+      <HeaderPrivate />
         <section>{children}</section>
       </section>
   )

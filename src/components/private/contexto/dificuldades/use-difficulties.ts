@@ -72,15 +72,15 @@ export default function useDifficulties() {
   const isStepValidDifficulty = selectedDifficulties.length > 0
 
   return {
-    allDifficulties,
-    customDifficulty,
-    customDifficulties,
-    selectedDifficulties,
     addCustomDifficulty,
+    allDifficulties,
+    customDifficulties,
+    customDifficulty,
     handleCustomDifficultyChange,
     handleKeyDownDifficulty,
     handleRemoveDifficulty,
     isStepValidDifficulty,
+    selectedDifficulties,
     setCustomDifficulty,
     setSelectedDifficulties,
     toggleDifficulty,

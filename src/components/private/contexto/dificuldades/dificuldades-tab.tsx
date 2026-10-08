@@ -1,4 +1,3 @@
-
 import { AlertCircle, ChevronLeft, ChevronRight } from 'lucide-react'
 import type React from 'react'
 import { Button } from '@/components/ui/button'
@@ -45,7 +44,8 @@ export default function DificuldadesTab({
           </h2>
         </div>
         <p className="text-xs text-zinc-400">
-          Selecione ou digite os seus principais desafios para adaptarmos o seu aprendizado.
+          Selecione ou digite os seus principais desafios para adaptarmos o seu
+          aprendizado.
         </p>
       </div>
 

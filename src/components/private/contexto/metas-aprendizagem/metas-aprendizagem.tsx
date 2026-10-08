@@ -62,7 +62,7 @@ export default function MetasAprendizagem({
   const goalPresets = [5, 10, 15, 20, 30]
 
   return (
-    <div className=" space-y-4 ">
+    <div className="space-y-4">
       {/* SEÇÃO 1: MOTIVOS DE APRENDIZADO */}
       <div className="space-y-3">
         <div className="flex items-center gap-2.5 sm:gap-3">

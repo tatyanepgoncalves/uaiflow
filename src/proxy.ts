@@ -45,7 +45,7 @@ export function proxy(request: NextRequest) {
   // Caso 3: Usuário ESTÁ autenticado e tenta acessar o Login (/) ou Cadastro -> Redireciona para o /dashboard
   if (authToken && publicRoute?.whenAuthenticated === 'redirect') {
     const redirectUrl = request.nextUrl.clone()
-    redirectUrl.pathname = '/pratica-ativa'
+    redirectUrl.pathname = '/central-de-aprendizado'
     return NextResponse.redirect(redirectUrl)
   }
 

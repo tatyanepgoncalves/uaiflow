@@ -4,14 +4,14 @@ import { useCallback, useState } from 'react'
 import { toast } from '@/components/ui/toast'
 import type { CreateUserContextBodyData } from '@/schemas/user-contexto/create-user-context'
 import { createUserContext } from '@/services/user-context-service'
+import useDifficulties from './dificuldades/use-difficulties'
 import useHobbiesInteresses from './hobbies-interesses/use-hobbies-interests'
 // Sub-hooks de cada aba
 import useLanguages from './idioma/use-languages'
 import useLanguageAccent from './idioma-sotaque/use-language-accent'
+import useGoals from './metas-aprendizagem/use-goals'
 import useNivelCefr from './nivel-cefr/use-nivel-cefr'
 import useTemaConteudos from './temas-conteudos/use-tema-conteudos'
-import useDifficulties from './dificuldades/use-difficulties'
-import useGoals from './metas-aprendizagem/use-goals'
 
 export const TABS = [
   'idiomas',
@@ -43,7 +43,7 @@ export default function useUserContext(initialLanguageSlug = 'ingles') {
   const submitContextMutation = useMutation({
     mutationFn: (body: CreateUserContextBodyData) =>
       createUserContext(
-        languageFlow.selectedLanguage?.id|| initialLanguageSlug,
+        languageFlow.selectedLanguage?.id || initialLanguageSlug,
         body
       ),
     onError: (error: any) => {
@@ -146,6 +146,7 @@ export default function useUserContext(initialLanguageSlug = 'ingles') {
     activeTab,
     currentLevel,
     difficultiesFlow,
+    goalsFlow,
     handleBackTab,
     handleNextTab,
     handleSubmitAll,
@@ -161,6 +162,5 @@ export default function useUserContext(initialLanguageSlug = 'ingles') {
     setActiveTab,
     setCurrentLevel,
     topicsFlow,
-    goalsFlow
   }
 }

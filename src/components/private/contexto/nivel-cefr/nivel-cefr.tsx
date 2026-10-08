@@ -67,7 +67,7 @@ export default function NivelCefr({
                 <div className="flex items-center justify-between">
                   <h2
                     className={cn(
-                      'font-black text-sm truncate',
+                      'truncate font-black text-sm',
                       isSelected ? 'text-indigo-300' : 'text-zinc-200'
                     )}
                   >
@@ -112,7 +112,7 @@ export default function NivelCefr({
                 <div className="flex items-center justify-between">
                   <h2
                     className={cn(
-                      'font-black text-sm truncate',
+                      'truncate font-black text-sm',
                       isSelected ? 'text-emerald-300' : 'text-zinc-200'
                     )}
                   >

@@ -125,17 +125,17 @@ export default function CadastrarContexto() {
 
             <TabsContent className="px-2" value="dificuldades">
               <DificuldadesTab
+                addCustomDifficulty={flow.difficultiesFlow.addCustomDifficulty}
+                allDifficulties={flow.difficultiesFlow.allDifficulties}
                 customDifficulty={flow.difficultiesFlow.customDifficulty}
-                
-                  addCustomDifficulty={flow.difficultiesFlow.addCustomDifficulty}
-                  allDifficulties={flow.difficultiesFlow.allDifficulties}
-                  handleCustomDifficultyChange={flow.difficultiesFlow.handleCustomDifficultyChange}
                 handleBackTab={flow.handleBackTab}
+                handleCustomDifficultyChange={
+                  flow.difficultiesFlow.handleCustomDifficultyChange
+                }
                 handleKeyDownDifficulty={
                   flow.difficultiesFlow.handleKeyDownDifficulty
                 }
                 handleNextTab={flow.handleNextTab}
-                
                 isFirstTab={flow.isFirstTab}
                 isLastTab={flow.isLastTab}
                 isNextDisabled={flow.isNextDisabled}
@@ -207,9 +207,7 @@ export default function CadastrarContexto() {
                 handleKeyDownGoal={flow.goalsFlow.handleKeyDownGoal}
                 handleNextTab={flow.handleNextTab}
                 handleRemoveGoal={flow.goalsFlow.handleRemoveGoal}
-                handleSelectPresetGoal={
-                  flow.goalsFlow.handleSelectPresetGoal
-                }
+                handleSelectPresetGoal={flow.goalsFlow.handleSelectPresetGoal}
                 isFirstTab={flow.isFirstTab}
                 isLastTab={flow.isLastTab}
                 isNextDisabled={flow.isNextDisabled}
