@@ -11,6 +11,7 @@ import {
 import { Separator } from '@/components/ui/separator'
 import useContexts from '@/hooks/contexts/use-contexts'
 import useListContexts from '@/hooks/contexts/use-list-contexts'
+import CreateContextModal from '../../dialogs/create-context/create-context-modal'
 import FooterSelect from './footer-select'
 import InputSearch from './input-search'
 import ListLanguage from './list-language'
@@ -24,6 +25,7 @@ export default function SelectLanguage({ userId }: SelectLanguageProps) {
   const { userContexts, isLoadingUserContexts } = useContexts(userId)
   const { listContexts } = useListContexts({ contexts: userContexts })
 
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const [open, setOpen] = useState(false)
   const [selectedContextId, setSelectedContextId] = useState<string>('')
   const [searchTerm, setSearchTerm] = useState('')
@@ -43,49 +45,57 @@ export default function SelectLanguage({ userId }: SelectLanguageProps) {
   }
 
   return (
-    <Popover onOpenChange={setOpen} open={open}>
-      <PopoverTrigger
-        render={
-          <Button
-            aria-expanded={open}
-            className="h-10 w-42.5 justify-between border-zinc-800 bg-zinc-900 px-3 text-white transition-colors hover:bg-zinc-800 hover:text-white"
-            role="combobox"
-            variant="outline"
-          />
-        }
-      >
-        <div className="flex items-center gap-2 truncate font-medium text-xs">
-          {currentContext?.language?.code ? (
-            <span className="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0.5 font-bold text-[10px] text-emerald-400 uppercase">
-              {currentContext.language.code}
+    <>
+      <Popover onOpenChange={setOpen} open={open}>
+        <PopoverTrigger
+          render={
+            <Button
+              aria-expanded={open}
+              className="h-10 w-42.5 justify-between border-zinc-800 bg-zinc-900 px-3 text-white transition-colors hover:bg-zinc-800 hover:text-white"
+              role="combobox"
+              variant="outline"
+            />
+          }
+        >
+          <div className="flex items-center gap-2 truncate font-medium text-xs">
+            {currentContext?.language?.code ? (
+              <span className="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0.5 font-bold text-[10px] text-emerald-400 uppercase">
+                {currentContext.language.code}
+              </span>
+            ) : (
+              <Globe className="h-4 w-4 shrink-0 text-zinc-400" />
+            )}
+            <span className="truncate">
+              {currentContext?.language?.name || 'Selecione'}
             </span>
-          ) : (
-            <Globe className="h-4 w-4 shrink-0 text-zinc-400" />
-          )}
-          <span className="truncate">
-            {currentContext?.language?.name || 'Selecione'}
-          </span>
-        </div>
-        <ChevronsUpDown className="ml-2 h-3.5 w-3.5 shrink-0 opacity-50" />
-      </PopoverTrigger>
+          </div>
+          <ChevronsUpDown className="ml-2 h-3.5 w-3.5 shrink-0 opacity-50" />
+        </PopoverTrigger>
 
-      <PopoverContent align="end" className="w-60 space-y-2">
-        <InputSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        <PopoverContent align="end" className="w-60 space-y-2">
+          <InputSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
-        <Separator className="bg-zinc-700/40" />
+          <Separator className="bg-zinc-700/40" />
 
-        <ListLanguage
-          currentContext={currentContext}
-          filteredContexts={filteredContexts}
-          selectedContextId={selectedContextId}
-          setOpen={setOpen}
-          setSelectedContextId={setSelectedContextId}
-        />
+          <ListLanguage
+            currentContext={currentContext}
+            filteredContexts={filteredContexts}
+            selectedContextId={selectedContextId}
+            setOpen={setOpen}
+            setSelectedContextId={setSelectedContextId}
+          />
 
-        <Separator className="bg-zinc-700/40" />
+          <Separator className="bg-zinc-700/40" />
 
-        <FooterSelect setOpen={setOpen} />
-      </PopoverContent>
-    </Popover>
+          <FooterSelect setIsModalOpen={setIsModalOpen} setOpen={setOpen} />
+        </PopoverContent>
+      </Popover>
+
+      <CreateContextModal
+        onOpenChange={setIsModalOpen}
+        open={isModalOpen}
+        userId={userId}
+      />
+    </>
   )
 }

@@ -16,7 +16,7 @@ export default function ListLanguage({
   setOpen,
 }: ListLanguageProps) {
   return (
-    <div className="max-h-48 overflow-y-auto px-1 py-0.5">
+    <div className="max-h-48 space-y-3 overflow-y-auto px-1 py-0.5">
       {filteredContexts.length > 0 ? (
         filteredContexts.map((context) => {
           const isSelected = context.id === currentContext.id
@@ -40,6 +40,9 @@ export default function ListLanguage({
                   {context.language.code}
                 </span>
                 <span className="font-medium">{context.language.name}</span>
+                <span className="font-medium text-[10px]">
+                  {context.language.flag}
+                </span>
               </div>
               {isSelected && <Check className="h-3.5 w-3.5 text-emerald-400" />}
             </button>
