@@ -26,7 +26,9 @@ export default function SelectLanguage({ userId }: SelectLanguageProps) {
       <SelectContent>
         {listContexts.map((context) => (
           <SelectItem key={context.id} value={context.language.name}>
-            {context.language.name}
+            <p className="text-xs text-zinc-500">{context.language.code}</p>
+            <p>{context.language.name}</p>
+            <p>{context.language.flag}</p>
           </SelectItem>
         ))}
       </SelectContent>

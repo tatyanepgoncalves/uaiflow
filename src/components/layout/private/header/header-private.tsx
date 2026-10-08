@@ -12,8 +12,9 @@ export default async function HeaderPrivate() {
         {/* LOGO */}
         <Logo />
 
-        <div className="flex w-full max-w-130 items-center justify-between">
+        <div className="flex w-full max-w-100 items-center justify-between gap-3 border border-zinc-700/60">
           <SelectLanguage userId={user?.id ?? ''} />
+
           <UserAvatar />
         </div>
       </div>
